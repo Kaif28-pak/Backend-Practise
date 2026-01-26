@@ -1,0 +1,42 @@
+<%- include('partials/head') %>
+
+    <body>
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-5">
+                    <div class="card shadow border-0">
+                        <div class="card-header bg-primary text-white text-center py-3">
+                            <h4 class="mb-0">Aslam Auto - Register</h4>
+                        </div>
+                        <div class="card-body p-4">
+                            <form action="/api/user/register" method="POST">
+                                <div class="mb-3">
+                                    <label class="form-label">Full Name</label>
+                                    <input type="text" name="username" class="form-control" placeholder="Enter name"
+                                        required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Email Address</label>
+                                    <input type="email" name="email" class="form-control"
+                                        placeholder="example@auto.com" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Password</label>
+                                    <input type="password" name="password" class="form-control"
+                                        placeholder="Min 6 characters" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100 py-2">Create Account</button>
+                            </form>
+                        </div>
+                        <div class="card-footer text-center bg-white border-0">
+                            <p>Pehle se account hai? <a href="/api/user/login" class="text-decoration-none">Login</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include('partials/script') %>
+    </body>
+
+    </html>

@@ -2,10 +2,15 @@
   "compilerOptions": {
     "target": "ES2020",
     "module": "commonjs",
+    "moduleResolution": "node", // Taake TypeScript node_modules ko sahi dhoond sakay
     "rootDir": "./src",
     "outDir": "./dist",
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true, // Windows aur Linux ke file name issues se bachata hai
     "strict": true,
-    "skipLibCheck": true
-  }
+    "skipLibCheck": true,
+    "typeRoots": ["./node_modules/@types", "./src/types"] // Jo naya types folder banaya hai usko pehchane ke liye
+  },
+  "include": ["src/**/*"], // Sirf src ki files compile karein
+  "exclude": ["node_modules", "dist"] // Inhein ignore karein
 }

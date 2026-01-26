@@ -1,0 +1,35 @@
+<%- include('partials/head') %>
+
+    <body>
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-5">
+                    <div class="card shadow border-0">
+                        <div class="card-header bg-dark text-white text-center py-3">
+                            <h4 class="mb-0">Aslam Auto - Login</h4>
+                        </div>
+                        <div class="card-body p-4">
+                            <form action="/api/user/login" method="POST">
+                                <div class="mb-3">
+                                    <label class="form-label">Email Address</label>
+                                    <input type="email" name="email" class="form-control" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Password</label>
+                                    <input type="password" name="password" class="form-control" required>
+                                </div>
+                                <button type="submit" class="btn btn-dark w-100 py-2">Login</button>
+                            </form>
+                        </div>
+                        <div class="card-footer text-center bg-white border-0">
+                            <p>Account nahi hai? <a href="/api/user/register" class="text-decoration-none">Register</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include('partials/script') %>
+    </body>
+
+</html>
