@@ -1,19 +1,23 @@
 import express from 'express';
 import { Request, Response } from "express";
-const router = express.Router();
+import { restrictToLoggedinUserOnly } from "../middlewares/auth.middleware";
 import { handleUserRegister, handleUserLogin } from '../controllers/user.controller';
+const router = express.Router();
 router.get("/user/login", (req: Request, res: Response) => {
-    // Iska matlab hai 'views/login.ejs' ko render karo
+
     return res.render("login");
 })
 router.get("/user/register", (req: Request, res: Response) => {
-    // Iska matlab hai 'views/login.ejs' ko render karo
+
     return res.render("register");
 })
-router.get("/user/dashboard", (req: Request, res: Response) => {
-    // Iska matlab hai 'views/login.ejs' ko render karo
-    return res.render("dashboard");
-})
+router.get("/user/dashboard", restrictToLoggedinUserOnly, (req: any, res: any, next: any) => {
+    // EJS ko data render karein jo token se mila
+    res.render("dashboard", {
+        username: req.user?.username || "User",
+        email: req.user?.email || "No Email"
+    });
+});
 router.post('/user/register', handleUserRegister);
 router.post('/user/login', handleUserLogin);
 

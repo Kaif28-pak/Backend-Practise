@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import { User } from '../models/users.model';
+import { setUser } from "../utils/auth.util";
 // import { IUser } from '../types/user.type'
 
 export async function handleUserRegister(req: Request, res: Response): Promise<void> {
@@ -15,13 +16,21 @@ export async function handleUserRegister(req: Request, res: Response): Promise<v
         }
 
         const salt = await bcrypt.genSalt(10);
-        console.log(salt);
         
         const hashedPassword = await bcrypt.hash(password, salt);
-        console.log(hashedPassword);
         
 
-        await User.create({ username, email, password: hashedPassword });
+        const user = await User.create({ username, email, password: hashedPassword });
+        // 1. Token Generate karein
+        const token = setUser(user);
+
+        // 2. Cookie mein set karein
+        res.cookie("token", token, {
+            httpOnly: true, // Frontend JS ise read nahi kar payegi (Secure)
+            // secure: process.env.NODE_ENV === "production", // Sirf HTTPS par kaam karega
+            maxAge: 24 * 60 * 60 * 1000, // 1 Din ki expiry
+            path: "/",
+        });
         res.redirect("/api/user/dashboard");
     } catch (error: any) {
         res.render("register", { error: "Registration Failed: " + error.message });
@@ -42,11 +51,25 @@ export async function handleUserLogin(req: Request, res: Response): Promise<void
             res.render("login", { error: "Ghalat password!" });
             return;
         }
+        // 1. Token Generate karein
+        const token = setUser(user);
 
+        // 2. Cookie mein set karein
+        res.cookie("token", token, {
+            httpOnly: true, // Frontend JS ise read nahi kar payegi (Secure)
+            // secure: process.env.NODE_ENV === "production", // Sirf HTTPS par kaam karega
+            maxAge: 24 * 60 * 60 * 1000, // 1 Din ki expiry
+            path: "/",
+        });
        
     
-        res.redirect("/dashboard");
+        res.redirect("/api/user/dashboard");
     } catch (error: any) {
         res.render("login", { error: "Login Error" });
     }
 }
+
+export const handleUserLogout = (req: Request, res: Response) => {
+    res.clearCookie("token", { path: "/" }); // Cookie delete kar di
+    return res.redirect("/api/user/login"); // Wapas login par bhej diya
+};
