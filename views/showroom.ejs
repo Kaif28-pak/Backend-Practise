@@ -1,0 +1,64 @@
+<%- include('partials/head') %>
+<link rel="stylesheet" href="/css/style.css">
+
+<body>
+    <%- include('partials/nav') %>
+
+    <header class="hero">
+        <div class="hero-text">
+            <h1>Aslam Auto & Electrician</h1>
+            <p>Expert Wiring Solutions & Premium Used Cars.</p>
+            <div class="hero-btns">
+                <a href="#services" class="btn-main">Electrical Services</a>
+                <a href="#cars" class="btn-sec">View Cars</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="services" class="services-section">
+        <div class="container">
+            <h2 class="section-title">Our Electrical Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-bolt"></i> <h3>Wiring Repair</h3>
+                    <p>Complete wiring fault finding and restoration.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Computer Scanning</h3>
+                    <p>Advanced ECU coding and OBD2 diagnostics.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-car-battery"></i>
+                    <h3>Battery & Self</h3>
+                    <p>Alternator repairing and battery health check.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cars" class="cars-section">
+        <div class="container">
+            <h2 class="section-title">Latest Arrivals</h2>
+            
+            <% if (cars.length === 0) { %>
+                <p class="no-data">Abhi koi gaadi available nahi hai.</p>
+            <% } else { %>
+                <div class="car-grid">
+                    <% cars.forEach(car => { %>
+                        <div class="car-card">
+                            <img src="<%= car.image %>" alt="<%= car.name %>">
+                            <div class="car-info">
+                                <h3><%= car.name %></h3>
+                                <p class="brand"><%= car.brand %></p>
+                                <p class="price">$<%= car.price.toLocaleString() %></p>
+                                <button class="btn-details">View Details</button>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            <% } %>
+        </div>
+    </section>
+
+</body>

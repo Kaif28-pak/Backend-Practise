@@ -1,0 +1,25 @@
+
+<nav class="navbar">
+    <div class="logo">ASLAM<span>AUTO</span></div>
+    <ul class="nav-links">
+        <li><a href="/api/user/dashboard">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="/api/cars/add-car">Cars</a></li>
+        
+        <% if (locals.username) { %>
+            <li><a href="/api/user/dashboard" class="user-btn">Hi, <%= username %></a></li>
+            <li><a href="/api/user/logout">Logout</a></li>
+        <% } else { %>
+            <li><a href="/api/user/login">Login</a></li>
+        <% } %>
+    </ul>
+</nav>
+
+<ul class="nav-links">
+    <% if (locals.username) { %>
+        <li><a href="/api/user/dashboard">Hi, <%= username %></a></li>
+
+    <% } else { %>
+        <li><a href="/api/user/login">Login</a></li>
+    <% } %>
+</ul>

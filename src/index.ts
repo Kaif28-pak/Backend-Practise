@@ -3,6 +3,8 @@ import dotenv from 'dotenv'
 import express from "express"
 import connectDB from "./db/connectDB";
 import userRoutes from "./routes/user.route";
+import carsRoutes from "./routes/car.route";
+
 import path from 'path';
 // const cookieParser = require('cookie-parser')
 const app = express();
@@ -16,7 +18,9 @@ app.set("views", path.resolve(__dirname, "..", "views"));
 app.use(express.json());
 app.use(cookieParser()); // Yeh line routes se upar honi chahiye
 app.use(express.urlencoded({extended:true}))
+app.use(express.static(path.join(__dirname, "..", "public")));
 app.use("/api", userRoutes);
+app.use("/api/cars", carsRoutes);
 
 connectDB()
 

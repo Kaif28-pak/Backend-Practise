@@ -1,0 +1,43 @@
+<%- include('partials/head') %>
+<body>
+    <%- include('partials/nav') %>
+    <div class="container">
+        <div class="form-card">
+            
+            <h2 class="form-title">Add New Car</h2>
+            
+            <form action="/api/cars/add-car" method="POST" enctype="multipart/form-data">
+                
+                <div class="mb-3">
+                    <label class="form-label">Car Name</label>
+                    <input type="text" name="name" class="form-control" placeholder="Toyota Corolla" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Brand</label>
+                    <input type="text" name="brand" class="form-control" placeholder="Toyota" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Price ($)</label>
+                    <input type="number" name="price" class="form-control" placeholder="4500000" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Car Image</label>
+                    <input type="file" name="image" class="form-control" required>
+                </div> 
+
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <textarea name="description" class="form-control" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-red w-100 py-2">Publish Car</button>
+                <a href="/api/user/dashboard" class="btn btn-secondary w-100 mt-2">Cancel</a>
+                
+            </form>
+        </div>
+    </div>
+
+</body>

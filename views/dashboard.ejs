@@ -1,10 +1,60 @@
-<%- include('partials/head') %>
-<body>
-    <div class="container">
-        <h1>Aslam Auto Registration</h1>
-        <h1>Welcome, <%= username %></h1>
-        <p>Email: <%= email %></p>
-    </div>
-    <%- include('partials/script') %>
+<%- include('partials/head') %> <body>
+<%- include('partials/nav') %> 
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Aslam Auto & Electrician</h1>
+            <p>Quality Used Cars & Expert Electrical Repairs</p>
+            <div class="hero-btns">
+                <a href="#cars" class="btn-primary">Buy a Car</a>
+                <a href="#workshop" class="btn-secondary">Electrical Services</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="workshop" class="section">
+        <div class="container">
+            <h2 class="section-title">Expert Electrician Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Wiring Repair</h3>
+                    <p>Fault finding and complete car wiring restoration.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-microchip"></i>
+                    <h3>ECU Scanning</h3>
+                    <p>Computerized checkup for EFI and hybrid cars.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-battery-full"></i>
+                    <h3>Battery & Alt</h3>
+                    <p>Battery testing and alternator repairing services.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- <% console.log("cars",cars.id) %> -->
+
+    <section id="cars" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Used Cars for Sale</h2>
+            <div class="car-grid">
+                <% if(cars && cars.length > 0) { %>
+                    <% cars.forEach(car => { %>
+                        <div class="car-card">
+                            <img src="<%= car.image %>" alt="<%= car.name %>">
+                            <div class="car-info">
+                                <h3><%= car.name %></h3>
+                                <span class="price">$<%= car.price %></span>
+                                <a href="/api/cars/car-details/<%= car._id %>" class="btn btn-red">View Details</a>
+                            </div>
+                        </div>
+                    <% }) %>
+                <% } else { %>
+                    <p>Abhi koi gaadi available nahi hai.</p>
+                <% } %>
+            </div>
+        </div>
+    </section>
 </body>
-</html>

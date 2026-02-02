@@ -1,0 +1,39 @@
+<%- include('partials/head') %>
+<body style="background-color: #f8f9fa;">
+
+    <%- include('partials/nav') %>
+
+    <div class="container mt-5">
+        <div class="card shadow-lg border-0">
+            <div class="row g-0">
+                
+                <div class="col-md-6">
+                    <img src="<%= car.image %>" class="img-fluid rounded-start" alt="Car Image" style="width: 100%; height: 400px; object-fit: cover;">
+                </div>
+
+                <div class="col-md-6 d-flex align-items-center">
+                    <div class="card-body p-5">
+                        <h5 class="text-muted text-uppercase"><%= car.brand %></h5>
+                        <h1 class="fw-bold mb-3"><%= car.name %></h1>
+                        
+                        <h2 class="text-danger fw-bold mb-4">$<%= car.price %></h2>
+                        
+                        <p class="card-text text-secondary" style="font-size: 1.1rem;">
+                            <%= car.description %>
+                        </p>
+
+                        <hr>
+
+                        <div class="mt-4">
+                            <button class="btn btn-red btn-lg px-4 me-2">Buy Now</button>
+                            <a href="/api/user/showroom" class="btn btn-outline-dark btn-lg">Back to Showroom</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

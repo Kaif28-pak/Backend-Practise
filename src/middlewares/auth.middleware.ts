@@ -12,7 +12,7 @@ export const restrictToLoggedinUserOnly = (
     next: NextFunction
 ): void => {
     const token = req.cookies?.token;
-    console.log("Cookie Token:", token);
+    // console.log("Cookie Token:", token);
     if (!token) {
         return res.redirect("/api/user/login");
     }
